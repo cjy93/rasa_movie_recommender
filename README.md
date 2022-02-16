@@ -24,6 +24,8 @@ Flask==0.10.1
 gunicorn==19.3.0
 twilio==6.8.4
 ```
+## Enable API
+[Enable API](https://console.cloud.google.com/apis/enable)
 # Important references:
 Pay close attention to these references on how to set up deployment on GCP.
 
