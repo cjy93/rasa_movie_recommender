@@ -1,0 +1,78 @@
+version: "3.0"
+
+rules:
+  # - rule: Say goodbye anytime the user says goodbye
+  #   steps:
+  #     - intent: goodbye
+  #     - action: utter_goodbye
+
+  # - rule: Say 'I am a bot' anytime the user challenges
+  #   steps:
+  #     - intent: bot_challenge
+  #     - action: utter_iamabot
+
+  - rule: Activate form #(1 of 2)
+    steps: # rules superceed stories. Rules are rigid running exactly. At most one intent per rule
+      - intent: bot_challenge
+      - action: utter_iamabot
+      - action: user_details_form
+      - active_loop: user_details_form #trigger this loop
+
+  - rule: Submit form
+    condition:
+      # condition that form is active.
+      - active_loop: user_details_form # only works if this lopp active
+    steps:
+      # Form is deactivated
+      - action: user_details_form
+      - active_loop: null # end of active_loop
+      - slot_was_set:
+          - requested_slot: null
+      # The actions we want to run when the form is submitted
+      - action: action_submit
+      - intent: goodbye
+      - action: utter_goodbye
+
+  - rule: Submit movie form
+    condition:
+      # condition that form is active.
+      - active_loop: user_movie_form # only works if this loop active
+    steps:
+      # Form is deactivated
+      - action: user_movie_form
+      - active_loop: null # end of active_loop
+      - slot_was_set:
+          - requested_slot: null
+      # The actions we want to run when the form is submitted
+      - action: action_filter_submit
+      - action: utter_movie_detail
+      - intent: give_movie_details
+      - action: utter_affirm_movie
+
+  - rule: Submit movie form no give details
+    condition:
+      # condition that form is active.
+      - active_loop: user_movie_form # only works if this lopp active
+    steps:
+      # Form is deactivated
+      - action: user_movie_form
+      - active_loop: null # end of active_loop
+      - slot_was_set:
+          - requested_slot: null
+      # The actions we want to run when the form is submitted
+      - action: action_filter_submit
+      - action: utter_movie_detail
+      - intent: deny
+      - action: utter_goodbye
+
+  - rule: movie Link and image
+    steps:
+      # come in after "utter_affirm_movie"
+      - intent: movie_title
+      - action: action_movie_title
+      - action: utter_goodbye
+
+  - rule: out-of-scope
+    steps:
+      - intent: nlu_fallback
+      - action: utter_out_of_scope

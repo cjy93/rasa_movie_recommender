@@ -1,0 +1,249 @@
+version: "3.0"
+
+stories:
+  # cannot start with actions.
+  ############################### Happy ####################################
+  - story: happy path + plot movie # not work. Rasa trains and generalise
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: mood_great
+      - action: utter_happy
+      - action: utter_movie
+      - intent: affirm
+      - action: utter_accept_plot
+      - intent: affirm
+      - action: utter_by_plot
+      - intent: movie_plot
+      - action: action_movie_search # expand storylines! cannot skip another story
+      - intent: goodbye
+      - action: utter_goodbye
+
+  - story: happy path + form filling # Will jump to rules. Rasa trains and generalise
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: mood_great
+      - action: utter_happy
+      - action: utter_movie
+      - intent: affirm
+      - action: utter_accept_plot
+      - intent: deny
+      - action: utter_accept_filter
+      - intent: affirm
+      - action: user_movie_form
+      - active_loop: user_movie_form #trigger this loop
+
+  - story: happy path + clustering + give details # Rasa trains and generalise
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: mood_great
+      - action: utter_happy
+      - action: utter_movie
+      - intent: affirm
+      - action: utter_accept_plot
+      - intent: deny
+      - action: utter_accept_filter
+      - intent: deny
+      - action: utter_accept_cluster
+      - intent: affirm
+      - action: utter_accept_clustering
+      - intent: movie_title_clustering
+      - action: action_movie_cluster
+      - action: utter_movie_detail
+      - intent: give_movie_details
+      - action: utter_affirm_movie
+
+  - story: happy path + clustering + no give details # Rasa trains and generalise
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: mood_great
+      - action: utter_happy
+      - action: utter_movie
+      - intent: affirm
+      - action: utter_accept_plot
+      - intent: deny
+      - action: utter_accept_filter
+      - intent: deny
+      - action: utter_accept_cluster
+      - intent: affirm
+      - action: utter_accept_clustering
+      - intent: movie_title_clustering
+        # entities:
+        #   - movie: "Oldboy"
+      - action: action_movie_cluster
+      - action: utter_movie_detail
+      - intent: deny
+      - action: utter_goodbye
+
+  - story: happy path + No need help # not work. Rasa trains and generalise
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: mood_great
+      - action: utter_happy
+      - action: utter_movie
+      - intent: affirm
+      - action: utter_accept_plot
+      - intent: deny
+      - action: utter_accept_filter
+      - intent: deny
+      - action: utter_accept_cluster
+      - intent: deny
+      - action: utter_goodbye
+
+  - story: happy path + no need movie # not work. Rasa trains and generalise
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: mood_great
+      - action: utter_happy
+      - action: utter_movie
+      - intent: deny
+      - action: utter_goodbye
+
+  - story: greet path + are you a bot
+    steps:
+      # cannot start with actions.
+      - intent: greet
+      - action: utter_greet
+      - intent: greet_back
+      - action: utter_greetback
+      - intent: ask_name
+      - action: utter_iamabot
+      - action: utter_goodbye
+
+  ############################### Sad ####################################
+
+  - story: sad path 1 + plot movie
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: mood_unhappy
+      - action: utter_cheer_up
+      - action: utter_did_that_help
+      - intent: affirm
+      - action: utter_happy
+      - action: utter_movie
+      - intent: affirm
+      - action: utter_accept_plot
+      - intent: affirm
+      - action: utter_by_plot
+      - intent: movie_plot
+      - action: action_movie_search # expand storylines! cannot skip another story
+      - intent: goodbye
+      - action: utter_goodbye
+
+  - story: sad path + form filling # this will jump to rules
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: mood_unhappy
+      - action: utter_cheer_up
+      - action: utter_did_that_help
+      - intent: affirm
+      - action: utter_happy
+      - action: utter_movie
+      - intent: affirm
+      - action: utter_accept_plot
+      - intent: deny
+      - action: utter_accept_filter
+      - intent: affirm
+      - action: user_movie_form
+      - active_loop: user_movie_form #trigger this loop
+
+  - story: sad path + clustering + give movie details
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: mood_unhappy
+      - action: utter_cheer_up
+      - action: utter_did_that_help
+      - intent: affirm
+      - action: utter_happy
+      - action: utter_movie
+      - intent: affirm
+      - action: utter_accept_plot
+      - intent: deny
+      - action: utter_accept_filter
+      - intent: deny
+      - action: utter_accept_cluster
+      - intent: affirm
+      - action: utter_accept_clustering
+      - intent: movie_title_clustering
+      - action: action_movie_cluster
+      - action: utter_movie_detail
+      - intent: give_movie_details
+      - action: utter_affirm_movie
+
+  - story: sad path + clustering + no give movie details
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: mood_unhappy
+      - action: utter_cheer_up
+      - action: utter_did_that_help
+      - intent: affirm
+      - action: utter_happy
+      - action: utter_movie
+      - intent: affirm
+      - action: utter_accept_plot
+      - intent: deny
+      - action: utter_accept_filter
+      - intent: deny
+      - action: utter_accept_cluster
+      - intent: affirm
+      - action: utter_accept_clustering
+      - intent: movie_title_clustering
+      - action: action_movie_cluster
+      - action: utter_movie_detail
+      - intent: deny
+      - action: utter_goodbye
+
+  - story: sad path + no need movie # not work. Rasa trains and generalise
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: mood_unhappy
+      - action: utter_cheer_up
+      - action: utter_did_that_help
+      - intent: affirm
+      - action: utter_happy
+      - action: utter_movie
+      - intent: deny
+      - action: utter_goodbye
+
+  # - story: sad path 2
+  #   steps:
+  #     - intent: greet
+  #     - action: utter_greet
+  #     - intent: mood_unhappy
+  #     - action: utter_cheer_up
+  #     - action: utter_did_that_help
+  #     - intent: deny
+  #     - action: utter_goodbye
+
+  # - story: happy name path
+  #   steps:
+  #     - intent: greet
+  #     - action: utter_iamabot
+  #     - action: utter_name
+  #     - intent: my_name
+  #       entities:
+  #         - name: "Mary"
+  #     - slot_was_set:
+  #         - name: "Mary"
+  #     - action: utter_mobile_number
+  #     - intent: mobile_number
+  #       entities:
+  #         - number: "92837182"
+  #     - slot_was_set:
+  #         - number: "92837182"
+  #     - action: utter_thanks
+# dash line is chatbot message
+# no dash line, is extract the entities from user message
+# entities is under intent
+# slot_was_set is also under intent
+# using forms to collect and fill slot is better

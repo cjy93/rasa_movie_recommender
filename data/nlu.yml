@@ -1,0 +1,217 @@
+version: "3.0"
+
+nlu:
+  - intent: greet
+    examples: |
+      - hey
+      - hello
+      - hi
+      - hello there
+      - good morning
+      - good evening
+      - moin
+      - hey there
+      - let's go
+      - hey dude
+      - goodmorning
+      - goodevening
+      - good afternoon
+
+  - intent: ask_name
+    examples: |
+      - what is your name?
+      - may i know your name?
+      - who are you?
+      - your name?
+
+  - intent: goodbye
+    examples: |
+      - cu
+      - good by
+      - cee you later
+      - good night
+      - bye
+      - goodbye
+      - have a nice day
+      - see you around
+      - bye bye
+      - see you later
+      - thank you
+      - thank you for your help!
+
+  - intent: affirm
+    examples: |
+      - yes
+      - y
+      - indeed
+      - of course
+      - that sounds good
+      - correct
+
+  - intent: deny
+    examples: |
+      - no
+      - n
+      - never
+      - I don't think so
+      - don't like that
+      - no way
+      - not really
+      - refuse
+      - reject
+      - no need
+      - do not
+
+  - intent: mood_great
+    examples: |
+      - perfect
+      - great
+      - amazing
+      - feeling like a king
+      - wonderful
+      - I am feeling very good
+      - I am great
+      - I am amazing
+      - I am going to save the world
+      - super stoked
+      - extremely good
+      - so so perfect
+      - so good
+      - so perfect
+      - I am fine
+      - good
+
+  - intent: mood_unhappy
+    examples: |
+      - my day was horrible
+      - I am sad
+      - I don't feel very well
+      - I am disappointed
+      - super sad
+      - I'm so sad
+      - sad
+      - very sad
+      - unhappy
+      - not good
+      - not very good
+      - extremly sad
+      - so saad
+      - so sad
+
+  - intent: bot_challenge
+    examples: |
+      - are you a bot?
+      - are you a human?
+      - am I talking to a bot?
+      - am I talking to a human?
+
+  - intent: my_name
+    examples: |
+      - my name is [Jia Yi]{"entity":"name", "value":"Jia Yi"}
+      - my name is [Wilson]{"entity":"name", "value":"Wilson"}
+      - my name is [Kate]{"entity":"name", "value":"Kate"}
+      - my name is [Jack]{"entity":"name", "value":"Jack"}
+      - [Jia Yi]{"entity":"name", "value":"Jia Yi"} is my name
+      - people call me [Jia Yi]{"entity":"name", "value":"Jia Yi"}
+      - I am [Jia Yi]{"entity":"name", "value":"Jia Yi"}
+      - [Wilson]{"entity":"name", "value":"Wilson"} is my name
+      - people call me [Wilson]{"entity":"name", "value":"Wilson"}
+      - I am [Wilson]{"entity":"name", "value":"Wilson"}
+      - [Kate]{"entity":"name", "value":"Kate"} is my name
+      - people call me [Kate]{"entity":"name", "value":"Kate"}
+      - I am [Kate]{"entity":"name", "value":"Kate"}
+      - [Jack]{"entity":"name", "value":"Jack"} is my name
+      - people call me [Jack]{"entity":"name", "value":"Jack"}
+      - I am [Jack]{"entity":"name", "value":"Jack"}
+
+  - intent: mobile_number
+    examples: |
+      - my number is [82096058]{"entity":"number"}
+      - [82096058]{"entity":"number"} is my number
+      - [82096058]{"entity":"number"}
+      - my mobile number is [82096058]{"entity":"number"}
+
+  - intent: movie_plot
+    examples: |
+      - A blonde bride goes to Japan in search of her former boss and kills many people. She is dress in yellow and uses a katana. bike
+      - Jedi knight lightsaber starship
+      - Infiltrate in minds and extract information through a shared dream world. Different levels of dreams. Build a team to inplant idea for a very powerful Japanese industrialist
+      - Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.
+      - When a beautiful stranger leads computer hacker Neo to a forbidding underworld, he discovers the shocking truth--the life he knows is the elaborate deception of an evil cyber-intelligence.
+      - The lives of guards on Death Row are affected by one of their charges: a black man accused of child murder and rape, yet who has a mysterious gift.
+
+  - intent: movie_title
+    examples: |
+      - Fate/stay night: Heaven's Feel Series
+      - G-Force
+      - Aalroopangal
+      - Just Another Margin
+      - Yu-Gi-Oh! The Movie: Pyramid of Light
+      - Titanic
+      - Parasite
+      - Inside Out
+      - Finding Nemo
+      - The Intouchables
+      - Coco
+      - 3 Idiots
+      - Toy Story 3
+      - Up
+      - Green Book
+      - The Grand Budapest Hotel
+      - Mary and Max
+
+  - intent: movie_title_clustering
+    examples: |
+      - The movie title is: "[Oldboy]"{"entity":"movie", "value":"Oldboy"}
+      - The movie title is: "[Django Unchained]"{"entity":"movie", "value":"Django Unchained"}
+      - The movie title is: "[Das Boot]"{"entity":"movie", "value":"Das Boot"}
+      - The movie title is: "[Just Another Margin]"{"entity":"movie", "value":"Just Another Margin"}
+      - The movie title is: "[The Kid]"{"entity":"movie", "value":"The Kid"}
+      - The movie title is: "[L.A. Confidential]"{"entity":"movie", "value":"L.A. Confidential"}
+      - The movie title is: "[Spotlight]"{"entity":"movie", "value":"Spotlight"}
+      - The movie title is: "[Inside Out]"{"entity":"movie", "value":"Inside Out"}
+      - The movie title is: "[Toy Story 3]"{"entity":"movie", "value":"Toy Story 3"}
+      - The movie title is: "[Toy Story 3]"{"entity":"movie", "value":"Toy Story 3"}
+
+  - intent: give_movie_details
+    examples: |
+      - Give movie details
+      - give more details
+      - give me details
+      - Can i have the movie poster
+      - May i have the movie imdb link
+      - could you show me the website link
+
+  - intent: my_genre
+    examples: |
+      - the genre i am looking for is [Comedy]{"entity":"genre"}
+      - [Action]{"entity":"genre"}
+      - [Adventure]{"entity":"genre"}
+      - [Drama]{"entity":"genre"}
+      - [Horror]{"entity":"genre"}
+      - [Romance]{"entity":"genre"}
+      - [Sci-Fi]{"entity":"genre"}
+      - [War]{"entity":"genre"}
+
+  - intent: my_year
+    examples: |
+      - the movies falling after year [1992]{"entity":"year"}
+      - [2000]{"entity":"year"}
+      - [2001]{"entity":"year"}
+      - [2010]{"entity":"year"}
+      - [1999]{"entity":"year"}
+
+  - intent: my_language
+    examples: |
+      - the language is [English]{"entity":"language"}
+      - [Chinese]{"entity":"language"}
+      - [Malay]{"entity":"language"}
+      - [Spanish]{"entity":"language"}
+      - [French]{"entity":"language"}
+
+# - intent: greet_back
+#   examples: |
+#     - How are you too?
+#     - I am fine, how are you?
+#     - fine thank you. You?
+#     - I am fine, how about you?

@@ -1,0 +1,171 @@
+version: "3.0"
+
+intents:
+  - greet
+  - greet_back
+  - goodbye
+  - affirm
+  - deny
+  - mood_great
+  - mood_unhappy
+  - bot_challenge
+  - my_name
+  - mobile_number
+  - ask_name
+  - movie_plot
+  - movie_title
+  - by_plot
+  - by_filters
+  - by_clusters
+  - give_movie_details
+  - my_genre
+  - my_year
+  - my_language
+  - movie_title_clustering
+
+responses:
+  utter_greet:
+    - text: "Hey! How are you?"
+      buttons:
+        - title: "great"
+          payload: "/mood_great"
+        - title: "super sad"
+          payload: "/mood_unhappy"
+
+  utter_greetback:
+    - text: "I am fine too, thank you!"
+
+  utter_cheer_up:
+    - text: "Here is something to cheer you up:"
+      image: "https://i.imgur.com/nGF1K8f.jpg"
+
+  utter_did_that_help:
+    - text: "Did that help you?"
+
+  utter_happy:
+    - text: "Great, carry on!"
+      image: "https://static.boredpanda.com/blog/wp-content/uploads/2014/03/cute-smiling-animals-2.jpg"
+
+  utter_goodbye:
+    - text: "Glad I was of help. Have a nice day, Bye!"
+
+  utter_iamabot:
+    - text: "I am a bot, powered by Rasa."
+
+  utter_ask_name:
+    - text: "what is your name?"
+
+  utter_ask_number:
+    - text: "What is your mobile number?"
+
+  utter_thanks:
+    - text: "Thanks for providing the values"
+
+  utter_details_thanks:
+    - text: "Thanks for providing the given details \nName: {Name},\nMobile Number: {Mobile_number}"
+
+  utter_out_of_scope:
+    - text: "Sorry, I didn't get what you said. Please rephrase what you said."
+
+  utter_movie:
+    - text: "Do you want me to look for a movie?"
+    - text: "Do you need me to look for a movie?"
+    - text: "Would you like to look for a movie?"
+
+  utter_accept_plot:
+    - text: "Would you like to give the general movie plot?"
+
+  utter_accept_filter:
+    - text: "Would you like to use filtering conditions?"
+
+  utter_accept_cluster:
+    - text: "Would you like to use the clustering model?"
+
+  utter_by_plot:
+    - text: "Okay! Write the plot of the movie title you are looking for."
+
+  utter_movie_detail:
+    - text: "If you want more details about a particular title, say 'Give movie details', else please reject"
+      buttons:
+        - title: "Give movie details"
+          payload: "/give_movie_details"
+        - title: "reject"
+          payload: "/deny"
+
+  utter_affirm_movie:
+    - text: "Okay, thank you for your reply. Please type the full movie name: "
+
+  utter_accept_clustering:
+    - text: 'Please type the movie title starting with *The movie title is: "xxx,xxxx"*. (If more than one split by comma and inside quotes)'
+
+  utter_ask_genre:
+    - text: "Which genre? Type one of the following: Action, Adventure, Animation, Biography, Comedy, Crime, Drama, Family, Fantasy, Film-Noir, History, Horror, Music, Musical, Mystery, Romance, Sci-Fi, Sport, Thriller, War, Western"
+
+  utter_ask_year:
+    - text: "After which year?"
+
+  utter_ask_language:
+    - text: "What language do you want the movie in? Type one of the following: American Sign,Amharic,Arabic,Belarusian,Bengali,Cantonese,Chinese,Czech,Danish,English,Esperanto,French,Gaelic,German,Greek,Hebrew,Hindi,Hmong,Hungarian,Irish Gaelic,Italian,Japanese,Japanese Sign,Kinyarwanda,Korean,Latin,Malayalam,Mandarin,Nepali,None,Norwegian,Old English,Persian,Polish,Portuguese,Quenya,Russian,Saami,Shanghainese,Sicilian,Sindarin,Spanish,Swahili,Swedish,Tamil,Thai,Turkish,Vietnamese,Xhosa,Yiddish,Zulu"
+
+  utter_filter_thanks:
+    - text: "Thanks for providing the given details \nGenre:{Genre}, \nYear after:{Year_after}, \nLanguage: {Language}, \nRecommended Titles: {Titles}"
+
+  utter_anymore_qns:
+    - text: "Is there anything else I can help you with?"
+
+entities:
+  - name
+  - number
+  - genre
+  - year
+  - language
+  - movie
+
+slots:
+  name:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: name
+  number:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: number
+  genre:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: genre
+  year:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: year
+  language:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: language
+
+actions:
+  - action_movie_title
+  - action_submit
+  - action_movie_search
+  - action_filter_submit
+  - action_movie_cluster
+
+forms:
+  user_details_form:
+    required_slots:
+      - name
+      - number
+  user_movie_form:
+    required_slots:
+      - genre
+      - year
+      - language
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

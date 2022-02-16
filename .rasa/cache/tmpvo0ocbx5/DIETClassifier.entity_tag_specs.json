@@ -1,0 +1,52 @@
+[
+  {
+    "tag_name": "entity",
+    "ids_to_tags": {
+      "1": "B-genre",
+      "2": "I-genre",
+      "3": "L-genre",
+      "4": "U-genre",
+      "5": "B-language",
+      "6": "I-language",
+      "7": "L-language",
+      "8": "U-language",
+      "9": "B-name",
+      "10": "I-name",
+      "11": "L-name",
+      "12": "U-name",
+      "13": "B-number",
+      "14": "I-number",
+      "15": "L-number",
+      "16": "U-number",
+      "17": "B-year",
+      "18": "I-year",
+      "19": "L-year",
+      "20": "U-year",
+      "0": "O"
+    },
+    "tags_to_ids": {
+      "B-genre": 1,
+      "I-genre": 2,
+      "L-genre": 3,
+      "U-genre": 4,
+      "B-language": 5,
+      "I-language": 6,
+      "L-language": 7,
+      "U-language": 8,
+      "B-name": 9,
+      "I-name": 10,
+      "L-name": 11,
+      "U-name": 12,
+      "B-number": 13,
+      "I-number": 14,
+      "L-number": 15,
+      "U-number": 16,
+      "B-year": 17,
+      "I-year": 18,
+      "L-year": 19,
+      "U-year": 20,
+      "O": 0
+    },
+    "num_tags": 21
+  }
+]
